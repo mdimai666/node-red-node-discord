@@ -17,7 +17,8 @@
     "prepublishOnly": "npm run build",
     "preversion": "npm run lint",
     "version": "git add -A src",
-    "postversion": "git push && git push --tags"
+    "postversion": "git push && git push --tags",
+    "postinstall": "npm run build"
   },
   "husky": {
     "hooks": {
