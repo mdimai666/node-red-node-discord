@@ -7,7 +7,7 @@
     "type": "git",
     "url": "git+https://github.com/madmax3365/node-red-node-discord.git"
   },
-  "version": "2.1.0",
+  "version": "2.1.2",
   "scripts": {
     "build": "npm run copyHtml && npm run copyIcons && tsc ",
     "copyHtml": "bash copyHtml || pwsh copyHtml.ps1",
@@ -17,8 +17,7 @@
     "prepublishOnly": "npm run build",
     "preversion": "npm run lint",
     "version": "git add -A src",
-    "postversion": "git push && git push --tags",
-    "postinstall": "npm run build"
+    "postversion": "git push && git push --tags"
   },
   "husky": {
     "hooks": {
