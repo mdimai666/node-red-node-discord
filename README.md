@@ -1,3 +1,5 @@
+> Fixed Crash on Message receive
+
 # node-red-node-discord
 Inspired by [node-red-contrib-discord](https://github.com/jorisvddonk/node-red-contrib-discord)
 

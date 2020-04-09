@@ -15,7 +15,9 @@
 		"outDir": "./dist/",
 		"rootDir": "./src",
 		"noUnusedLocals": true,
-		"noUnusedParameters": true
+		"noUnusedParameters": true,
+		"esModuleInterop": true
+
 	},
 	"include": ["**/*.ts"],
 	"exclude": ["node_modules/**/*"]

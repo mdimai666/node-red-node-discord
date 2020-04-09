@@ -1,0 +1,23 @@
+{
+	"version": "2.0.0",
+	"tasks": [
+		{
+			"type": "npm",
+			"script": "copyHtml",
+			"problemMatcher": [],
+			"label": "npm: copyHtml",
+			"detail": "mkdir -p dist/nodes/ && cp -a src/nodes/*.html dist/nodes/"
+		},
+		{
+			"type": "npm",
+			"script": "build",
+			"group": {
+                "kind": "build",
+                "isDefault": true
+            },
+			"problemMatcher": [],
+			"label": "npm: build",
+			"detail": "npm run copyHtml && npm run copyIcons && tsc "
+		}
+	]
+}

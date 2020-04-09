@@ -1,21 +1,22 @@
 import { Message, Role } from 'discord.js';
 import { Node, Red } from 'node-red';
+import stringify from 'json-stringify-safe'
 
 import { Bot } from '../lib/Bot';
 import {
   IBot,
   ICallback,
   IConnectConfig,
+  IDiscordChannelConfig,
   IFromDiscordMsg,
-  IGetMessageConfig,
   NamedChannel,
 } from '../lib/interfaces';
 import { Mentions } from '../lib/Mentions';
 
 export = (RED: Red) => {
-  RED.nodes.registerType('discord-get-messages', function(
+  RED.nodes.registerType('discord-get-messages', function (
     this: Node,
-    props: IGetMessageConfig,
+    props: IDiscordChannelConfig,
   ) {
     RED.nodes.createNode(this, props);
     const configNode = RED.nodes.getNode(props.token) as IConnectConfig;
@@ -26,9 +27,9 @@ export = (RED: Red) => {
     const channels =
       rawChannels.length > 0
         ? rawChannels
-            .split('#')
-            .map((e: string) => e.trim())
-            .filter((e: string) => e !== '')
+          .split('#')
+          .map((e: string) => e.trim())
+          .filter((e: string) => e !== '')
         : [];
     if (token) {
       botInstance
@@ -73,11 +74,11 @@ export = (RED: Red) => {
               msg.member = message.member;
               msg.memberRoleNames = message.member
                 ? message.member.roles.array().map((item: Role) => {
-                    return item.name;
-                  })
+                  return item.name;
+                })
                 : null;
               msg.rawData = message;
-              node.send(msg);
+              node.send(safeClone(msg));
             }
           });
           registerCallback('error', (error: Error) => {
@@ -101,3 +102,7 @@ export = (RED: Red) => {
     }
   });
 };
+
+function safeClone(obj: any) {
+  return JSON.parse(stringify(obj))
+}
